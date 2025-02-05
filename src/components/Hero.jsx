@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaShieldAlt, FaRoute, FaDesktop, FaArrowRight } from 'react-icons/fa';
+import { FaShieldAlt, FaRoute, FaDesktop, FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 import { FiGlobe, FiAnchor, FiTruck } from 'react-icons/fi';
+import MaxWidthWrapper from './MaxWidthWrapper';
 
 const Hero = () => {
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const phrases = [
-    "Tu seguridad, nuestro destino",
-    "Protegiendo tu carga 24/7",
-    "Tecnología al servicio de tu tranquilidad"
+    "Su seguridad, nuestro destino",
+    "Protegiendo su carga 24/7",
+    "Tecnología al servicio de su tranquilidad"
   ];
 
   useEffect(() => {
@@ -83,109 +84,122 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative flex items-center justify-center min-h-[100dvh] overflow-hidden">
       {/* Video de fondo */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[#1D3C5B]/80 z-10" />
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover scale-105"
+          className="w-full h-full object-cover"
         >
-          <source src="/public/video.mp4" type="video/mp4" />
+          <source src="public/videos/intro.mp4" type="video/mp4" />
         </video>
       </div>
 
       {/* Contenido Principal */}
-      <motion.div
-        className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex flex-col justify-center"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <div className="h-24 md:h-32 mb-6 flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.h1
-                key={phrases[currentPhrase]}
-                variants={textVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="text-5xl md:text-7xl font-bold text-white"
-              >
-                {phrases[currentPhrase]}
-              </motion.h1>
-            </AnimatePresence>
-          </div>
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto"
+      <MaxWidthWrapper className="relative z-10 h-full">
+        <motion.div
+          className="w-full py-10 sm:py-14"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={itemVariants} className="text-center mb-6 sm:mb-8">
+            <div className="mb-4">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={phrases[currentPhrase]}
+                  variants={textVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+                >
+                  {phrases[currentPhrase]}
+                </motion.h1>
+              </AnimatePresence>
+            </div>
+            <motion.p 
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+              variants={itemVariants}
+            >
+              Empresa mexicana dedicada a la custodia de autotransporte.
+            </motion.p>
+          </motion.div>
+
+          {/* Botones CTA */}
+          <motion.div 
+            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
             variants={itemVariants}
           >
-            Sistema integral de rastreo y monitoreo para tu tranquilidad
-          </motion.p>
-        </motion.div>
-
-        {/* Botones CTA */}
-        <motion.div 
-          className="flex flex-col md:flex-row justify-center gap-6 mb-20"
-          variants={itemVariants}
-        >
-          <Link to="/servicios">
-            <motion.button
-              className="px-8 py-4 bg-white text-[#1D3C5B] rounded-lg font-semibold text-lg
-                hover:bg-opacity-90 transition-all duration-300 shadow-lg flex items-center gap-2 group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Conoce más
-              <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-1" />
-            </motion.button>
-          </Link>
-          <Link to="/contacto">
-            <motion.button
-              className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg 
-                font-semibold text-lg hover:bg-white hover:text-[#1D3C5B] transition-all duration-300
-                flex items-center gap-2"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Contáctanos
-              <FaArrowRight />
-            </motion.button>
-          </Link>
-        </motion.div>
-
-        {/* Features */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-          variants={containerVariants}
-        >
-          {features.map((feature, index) => (
-            <Link key={index} to={feature.link}>
+            <Link to="/servicios" className="w-full sm:w-auto">
               <motion.button
-                className="w-full text-left bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 text-white
-                  border border-white border-opacity-20 transition-all duration-300"
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05,
-                  backgroundColor: "rgba(255, 255, 255, 0.15)"
-                }}
+                className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 bg-white text-[#1D3C5B] rounded-lg font-semibold text-sm sm:text-base
+                  hover:bg-opacity-90 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group"
+                whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {feature.icon}
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-gray-300">{feature.description}</p>
-                <div className="mt-4 flex items-center gap-2 text-sm font-medium text-white/80">
-                  Saber más <FaArrowRight className="text-xs" />
-                </div>
+                Conoce más
+                <FaArrowRight className="transform transition-transform duration-300 group-hover:translate-x-1" />
               </motion.button>
             </Link>
-          ))}
+            <Link to="/contacto" className="w-full sm:w-auto">
+              <motion.button
+                className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-white text-white rounded-lg 
+                  font-semibold text-sm sm:text-base hover:bg-white hover:text-[#1D3C5B] transition-all duration-300
+                  flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Contáctanos
+                <FaArrowRight />
+              </motion.button>
+            </Link>
+          </motion.div>
+
+          {/* Features */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-6xl mx-auto"
+            variants={containerVariants}
+          >
+            {features.map((feature, index) => (
+              <Link key={index} to={feature.link}>
+                <motion.button
+                  className="w-full h-[160px] sm:h-[180px] text-left bg-white bg-opacity-10 backdrop-blur-sm rounded-lg p-4 sm:p-5 text-white
+                    border border-white border-opacity-20 transition-all duration-300 flex flex-col justify-between"
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.02,
+                    backgroundColor: "rgba(255, 255, 255, 0.15)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div>
+                    {feature.icon}
+                    <h3 className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">{feature.title}</h3>
+                    <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">{feature.description}</p>
+                  </div>
+                  <div className="mt-2 flex items-center gap-1 text-xs font-medium text-white/80">
+                    Saber más <FaArrowRight className="text-[10px]" />
+                  </div>
+                </motion.button>
+              </Link>
+            ))}
+          </motion.div>
+
+          {/* Floating WhatsApp CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="absolute bottom-8 right-8 hidden lg:block"
+          >
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </MaxWidthWrapper>
     </section>
   );
 };

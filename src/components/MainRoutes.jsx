@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { FiMapPin, FiTruck, FiNavigation2, FiGlobe, FiAnchor } from 'react-icons/fi';
-import Button from './Button';
+import { Link, useLocation } from 'react-router-dom';
+import { FiNavigation2 } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FaTruck, FaIndustry, FaShip, FaWarehouse, FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 
 const RouteCard = ({ route, isActive, onClick }) => {
   return (
@@ -12,19 +14,11 @@ const RouteCard = ({ route, isActive, onClick }) => {
       <div className="flex items-center gap-3 mb-4">
         <div className={`p-3 rounded-lg ${isActive ? 'bg-[#1D3C5B]' : 'bg-gray-100'} 
           transition-colors duration-300`}>
-          {route.type === 'frontera' ? (
-            <FiGlobe className={`text-2xl ${isActive ? 'text-white' : 'text-[#1D3C5B]'}`} />
-          ) : route.type === 'puerto' ? (
-            <FiAnchor className={`text-2xl ${isActive ? 'text-white' : 'text-[#1D3C5B]'}`} />
-          ) : (
-            <FiTruck className={`text-2xl ${isActive ? 'text-white' : 'text-[#1D3C5B]'}`} />
-          )}
+          {route.icon}
         </div>
         <div>
-          <h3 className="font-semibold text-[#111B40] text-lg">{route.name}</h3>
-          <p className="text-sm text-gray-600">
-            {route.type === 'frontera' ? 'Frontera' : route.type === 'puerto' ? 'Puerto Marítimo' : 'Ruta Comercial'}
-          </p>
+          <h3 className="font-semibold text-[#111B40] text-lg">{route.title}</h3>
+          <p className="text-sm text-gray-600">{route.description}</p>
         </div>
       </div>
 
@@ -32,39 +26,10 @@ const RouteCard = ({ route, isActive, onClick }) => {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 flex-1">
             <FiNavigation2 className="text-[#524E62] rotate-180" />
-            <span className="text-[#283050]">{route.origin}</span>
+            <span className="text-[#283050]">{route.stats}</span>
           </div>
-          <span className="text-sm text-gray-500">Origen</span>
+          <span className="text-sm text-gray-500">{route.highlight}</span>
         </div>
-
-        <div className="w-full h-px bg-gradient-to-r from-[#1D3C5B] to-[#524E62]" />
-
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 flex-1">
-            <FiNavigation2 className="text-[#524E62]" />
-            <span className="text-[#283050]">{route.destination}</span>
-          </div>
-          <span className="text-sm text-gray-500">Destino</span>
-        </div>
-
-        {isActive && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
-            <div className="text-sm text-[#283050]">
-              <p className="mb-2">
-                <strong>Puntos clave:</strong>
-              </p>
-              <ul className="space-y-2">
-                {route.keyPoints?.map((point, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <FiMapPin className="text-[#524E62]" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4 text-[#1D3C5B] font-medium">{route.description}</p>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -72,133 +37,166 @@ const RouteCard = ({ route, isActive, onClick }) => {
 
 const MainRoutes = () => {
   const [activeRoute, setActiveRoute] = useState(null);
-  const [filter, setFilter] = useState('todos');
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   const routes = [
     {
-      name: 'Nuevo Laredo',
-      type: 'frontera',
-      origin: 'CDMX',
-      destination: 'Nuevo Laredo, Tamaulipas',
-      keyPoints: ['Querétaro', 'San Luis Potosí', 'Monterrey'],
-      description: 'Principal punto de comercio con Estados Unidos'
+      title: "Frontera Norte Este",
+      description: "Nuevo Laredo, Tamaulipas y Piedras Negras, Coahuila",
+      icon: <FaTruck className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      stats: "1,200+ km",
+      highlight: "Alta seguridad"
     },
     {
-      name: 'Piedras Negras',
-      type: 'frontera',
-      origin: 'CDMX',
-      destination: 'Piedras Negras, Coahuila',
-      keyPoints: ['Querétaro', 'San Luis Potosí', 'Saltillo'],
-      description: 'Conexión estratégica con Texas'
+      title: "Frontera Norte Oeste",
+      description: "Ciudad Juárez, Chihuahua y rutas principales",
+      icon: <FaIndustry className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      stats: "2,000+ km",
+      highlight: "24/7 monitoreo"
     },
     {
-      name: 'Ciudad Juárez',
-      type: 'frontera',
-      origin: 'CDMX',
-      destination: 'Ciudad Juárez, Chihuahua',
-      keyPoints: ['Zacatecas', 'Torreón', 'Chihuahua'],
-      description: 'Punto clave para el comercio fronterizo'
+      title: "Puertos del Pacífico",
+      description: "Manzanillo, Colima y conexiones",
+      icon: <FaShip className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      stats: "800+ km",
+      highlight: "Carga marítima"
     },
     {
-      name: 'Manzanillo',
-      type: 'puerto',
-      origin: 'CDMX',
-      destination: 'Manzanillo, Colima',
-      keyPoints: ['Querétaro', 'Guadalajara', 'Colima'],
-      description: 'Principal puerto del Pacífico'
+      title: "Puertos del Golfo",
+      description: "Tampico, Altamira y Veracruz",
+      icon: <FaShip className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      stats: "900+ km",
+      highlight: "Multimodal"
     },
     {
-      name: 'Tampico-Altamira',
-      type: 'puerto',
-      origin: 'CDMX',
-      destination: 'Tampico, Tamaulipas',
-      keyPoints: ['Pachuca', 'Huejutla', 'Altamira'],
-      description: 'Puerto estratégico del Golfo'
+      title: "Corredor Occidente",
+      description: "Guadalajara, Jalisco y región Bajío",
+      icon: <FaTruck className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      stats: "350+ km",
+      highlight: "Alta frecuencia"
     },
     {
-      name: 'Guadalajara',
-      type: 'comercial',
-      origin: 'CDMX',
-      destination: 'Guadalajara, Jalisco',
-      keyPoints: ['Querétaro', 'León', 'La Piedad'],
-      description: 'Centro comercial del occidente'
-    },
-    {
-      name: 'Bajío',
-      type: 'comercial',
-      origin: 'CDMX',
-      destination: 'Querétaro-León',
-      keyPoints: ['Querétaro', 'Celaya', 'Salamanca', 'León'],
-      description: 'Corredor industrial del Bajío'
-    },
-    {
-      name: 'Zona Metropolitana',
-      type: 'comercial',
-      origin: 'CDMX',
-      destination: 'Estado de México',
-      keyPoints: ['Toluca', 'Tlalnepantla', 'Ecatepec', 'Cuautitlán'],
-      description: 'Principal zona industrial del país'
+      title: "Zona Metropolitana",
+      description: "Estado de México y Área Metropolitana",
+      icon: <FaWarehouse className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      stats: "150+ km",
+      highlight: "Distribución"
     }
   ];
 
-  const filteredRoutes = filter === 'todos' ? routes : routes.filter(route => route.type === filter);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#111B40] mb-4">
-            Nuestras Rutas Estratégicas
-          </h2>
-          <p className="text-[#283050] max-w-3xl mx-auto mb-8">
-            Manejamos las rutas más importantes de comercio tanto nacional como de importación y exportación, 
-            conectando los principales puntos estratégicos del país.
-          </p>
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+          className="text-center mb-16"
+        >
+          <motion.h2 
+            variants={itemVariants}
+            className="text-4xl font-bold text-[#1D3C5B] mb-4"
+          >
+            Rutas Principales
+          </motion.h2>
+          <motion.p 
+            variants={itemVariants}
+            className="text-xl text-gray-600 max-w-3xl mx-auto"
+          >
+            Nuestras oficinas, ubicadas en la región del Bajío, nos permiten ofrecer un servicio rápido 
+            y eficaz en las rutas más importantes de comercio, tanto a nivel nacional como internacional. 
+            Cubrimos áreas clave como:
+          </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="text-md text-gray-500 max-w-2xl mx-auto mt-4"
+          >
+            *Además de estas rutas principales, cubrimos todas las rutas nacionales según las necesidades de nuestros clientes.
+          </motion.p>
+        </motion.div>
 
-          {/* Filtros */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button
-              variant={filter === 'todos' ? 'primary' : 'outline'}
-              onClick={() => setFilter('todos')}
-            >
-              Todas las rutas
-            </Button>
-            <Button
-              variant={filter === 'frontera' ? 'primary' : 'outline'}
-              onClick={() => setFilter('frontera')}
-            >
-              <FiGlobe className="mr-2" />
-              Fronteras
-            </Button>
-            <Button
-              variant={filter === 'puerto' ? 'primary' : 'outline'}
-              onClick={() => setFilter('puerto')}
-            >
-              <FiAnchor className="mr-2" />
-              Puertos
-            </Button>
-            <Button
-              variant={filter === 'comercial' ? 'primary' : 'outline'}
-              onClick={() => setFilter('comercial')}
-            >
-              <FiTruck className="mr-2" />
-              Comerciales
-            </Button>
-          </div>
-        </div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {routes.map((route, index) => (
+            <Link key={index} to={isHomePage ? "/rutas" : `https://wa.me/+524772870874`} target={!isHomePage ? "_blank" : undefined}>
+              <motion.div
+                variants={itemVariants}
+                className="group bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-all duration-300
+                  hover:scale-105 hover:shadow-xl border border-gray-100"
+              >
+                <div className="bg-[#1D3C5B] p-4 flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-white/10">
+                    {route.icon}
+                  </div>
+                  <h3 className="font-semibold text-white text-lg">
+                    {route.title}
+                  </h3>
+                </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredRoutes.map((route, index) => (
-            <RouteCard
-              key={index}
-              route={route}
-              isActive={activeRoute?.name === route.name}
-              onClick={setActiveRoute}
-            />
+                <div className="p-6">
+                  <p className="text-gray-600 mb-6">
+                    {route.description}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <FiNavigation2 className="text-[#1D3C5B]" />
+                      <span className="text-[#1D3C5B] font-medium">{route.stats}</span>
+                    </div>
+                    <span className="text-sm bg-blue-50 text-[#1D3C5B] px-4 py-2 rounded-full
+                      font-medium border border-blue-100">
+                      {route.highlight}
+                    </span>
+                  </div>
+                </div>
+
+                {isHomePage ? (
+                  <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
+                    <span className="text-sm text-[#1D3C5B] font-medium flex items-center gap-2">
+                      Ver detalles <FaArrowRight className="transform group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                ) : (
+                  <div className="px-6 py-3 bg-green-50 border-t border-green-100 flex justify-end items-center group">
+                    <span className="text-sm text-green-600 font-medium flex items-center gap-2">
+                      Consultar disponibilidad <FaWhatsapp className="text-lg transform group-hover:scale-110 transition-transform" />
+                    </span>
+                  </div>
+                )}
+              </motion.div>
+            </Link>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

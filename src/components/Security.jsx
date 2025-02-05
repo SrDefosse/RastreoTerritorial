@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { FiShield, FiRadio, FiTruck, FiUsers, FiAward } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const FeatureCard = ({ icon: Icon, title, description, delay }) => {
   const cardRef = useRef(null);
@@ -31,17 +34,21 @@ const FeatureCard = ({ icon: Icon, title, description, delay }) => {
   return (
     <div
       ref={cardRef}
-      className={`bg-white rounded-lg shadow-lg p-6 transform transition-all duration-700
-        translate-y-8 opacity-0`}
+      className={`group bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500
+        translate-y-8 opacity-0 hover:bg-[#1D3C5B] hover:-translate-y-2 hover:shadow-2xl border border-gray-100`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <div className="flex items-center gap-4 mb-4">
-        <div className="p-3 rounded-lg bg-[#1D3C5B] text-white">
+        <div className="p-3 rounded-lg bg-blue-50 text-[#1D3C5B] group-hover:bg-white/10 group-hover:text-white transition-colors duration-300">
           <Icon size={24} />
         </div>
-        <h3 className="text-xl font-semibold text-[#111B40]">{title}</h3>
+        <h3 className="text-xl font-semibold text-[#111B40] group-hover:text-white transition-colors duration-300">
+          {title}
+        </h3>
       </div>
-      <p className="text-[#283050]">{description}</p>
+      <p className="text-[#283050] group-hover:text-gray-200 transition-colors duration-300">
+        {description}
+      </p>
     </div>
   );
 };
@@ -84,11 +91,11 @@ const CaseStudy = () => {
             <img
               src="https://images.pexels.com/photos/13062236/pexels-photo-13062236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt="Caso de éxito"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover rounded-xl"
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className="absolute inset-0 w-full h-full bg-gray-200 flex items-center justify-center">
+            <div className="absolute inset-0 w-full h-full bg-gray-200 flex items-center justify-center rounded-xl">
               <div className="text-center p-4">
                 <FiTruck className="w-12 h-12 mx-auto text-gray-400 mb-2" />
                 <p className="text-gray-600">Imagen no disponible</p>
@@ -167,6 +174,37 @@ const Security = () => {
         </div>
 
         <CaseStudy />
+
+        {/* CTAs */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <Link to="/contacto" className="w-full sm:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:w-auto px-6 py-3 bg-[#1D3C5B] text-white rounded-lg font-semibold
+                hover:bg-[#2A4E73] transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+            >
+              Solicitar Demostración
+              <FiShield className="text-xl" />
+            </motion.button>
+          </Link>
+          <a 
+            href="https://wa.me/+524772870874"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto"
+          >
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:w-auto px-6 py-3 bg-[#25D366] text-white rounded-lg font-semibold
+                hover:bg-[#20BA5C] transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+            >
+              Consultar Disponibilidad
+              <FaWhatsapp className="text-xl" />
+            </motion.button>
+          </a>
+        </div>
       </div>
     </div>
   );
