@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FiMapPin, FiTruck, FiClock, FiNavigation2, FiGlobe, FiAnchor } from 'react-icons/fi';
+import { FiMapPin, FiTruck, FiNavigation2, FiGlobe, FiAnchor } from 'react-icons/fi';
+import Button from './Button';
 
 const RouteCard = ({ route, isActive, onClick }) => {
   return (
@@ -21,7 +22,9 @@ const RouteCard = ({ route, isActive, onClick }) => {
         </div>
         <div>
           <h3 className="font-semibold text-[#111B40] text-lg">{route.name}</h3>
-          <p className="text-sm text-gray-600">{route.type === 'frontera' ? 'Frontera' : route.type === 'puerto' ? 'Puerto Marítimo' : 'Ruta Comercial'}</p>
+          <p className="text-sm text-gray-600">
+            {route.type === 'frontera' ? 'Frontera' : route.type === 'puerto' ? 'Puerto Marítimo' : 'Ruta Comercial'}
+          </p>
         </div>
       </div>
 
@@ -58,6 +61,7 @@ const RouteCard = ({ route, isActive, onClick }) => {
                   </li>
                 ))}
               </ul>
+              <p className="mt-4 text-[#1D3C5B] font-medium">{route.description}</p>
             </div>
           </div>
         )}
@@ -68,6 +72,7 @@ const RouteCard = ({ route, isActive, onClick }) => {
 
 const MainRoutes = () => {
   const [activeRoute, setActiveRoute] = useState(null);
+  const [filter, setFilter] = useState('todos');
 
   const routes = [
     {
@@ -136,6 +141,8 @@ const MainRoutes = () => {
     }
   ];
 
+  const filteredRoutes = filter === 'todos' ? routes : routes.filter(route => route.type === filter);
+
   return (
     <div className="min-h-screen bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -143,14 +150,45 @@ const MainRoutes = () => {
           <h2 className="text-3xl font-bold text-[#111B40] mb-4">
             Nuestras Rutas Estratégicas
           </h2>
-          <p className="text-[#283050] max-w-3xl mx-auto">
+          <p className="text-[#283050] max-w-3xl mx-auto mb-8">
             Manejamos las rutas más importantes de comercio tanto nacional como de importación y exportación, 
             conectando los principales puntos estratégicos del país.
           </p>
+
+          {/* Filtros */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Button
+              variant={filter === 'todos' ? 'primary' : 'outline'}
+              onClick={() => setFilter('todos')}
+            >
+              Todas las rutas
+            </Button>
+            <Button
+              variant={filter === 'frontera' ? 'primary' : 'outline'}
+              onClick={() => setFilter('frontera')}
+            >
+              <FiGlobe className="mr-2" />
+              Fronteras
+            </Button>
+            <Button
+              variant={filter === 'puerto' ? 'primary' : 'outline'}
+              onClick={() => setFilter('puerto')}
+            >
+              <FiAnchor className="mr-2" />
+              Puertos
+            </Button>
+            <Button
+              variant={filter === 'comercial' ? 'primary' : 'outline'}
+              onClick={() => setFilter('comercial')}
+            >
+              <FiTruck className="mr-2" />
+              Comerciales
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {routes.map((route, index) => (
+          {filteredRoutes.map((route, index) => (
             <RouteCard
               key={index}
               route={route}
