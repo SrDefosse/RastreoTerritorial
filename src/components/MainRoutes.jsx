@@ -172,7 +172,7 @@ const MainRoutes = () => {
               <div className="relative aspect-square">
                 <img
                   src="/public/images/MainRoutesImage.jpg"
-                  alt="Mapa de México"
+                  alt="Rastreo Territorial"
                   className="w-full h-full object-cover rounded-lg"
                 />
                 <div className="absolute inset-0 bg-[#1D3C5B]/10 rounded-lg" />

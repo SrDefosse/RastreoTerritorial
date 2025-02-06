@@ -118,7 +118,7 @@ const Services = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div variants={itemVariants} className="relative">
               <img
-                src="https://images.pexels.com/photos/18290480/pexels-photo-18290480/free-photo-of-white-truck-in-motion-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://images.pexels.com/photos/3912976/pexels-photo-3912976.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Centro de monitoreo"
                 className="w-full h-[400px] object-cover rounded-xl shadow-lg"
               />
@@ -132,7 +132,7 @@ const Services = () => {
             <motion.div variants={itemVariants} className="grid grid-cols-2 gap-8">
               <div className="relative">
                 <img
-                  src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg"
+                  src="https://images.pexels.com/photos/5370937/pexels-photo-5370937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Comunicación en tiempo real"
                   className="w-full h-[185px] object-cover rounded-xl shadow-lg"
                 />
@@ -144,7 +144,7 @@ const Services = () => {
               </div>
               <div className="relative">
                 <img
-                  src="https://images.pexels.com/photos/3183153/pexels-photo-3183153.jpeg"
+                  src="https://images.pexels.com/photos/7651734/pexels-photo-7651734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Reportes detallados"
                   className="w-full h-[185px] object-cover rounded-xl shadow-lg"
                 />
@@ -156,7 +156,7 @@ const Services = () => {
               </div>
               <div className="relative col-span-2">
                 <img
-                  src="https://images.pexels.com/photos/1427541/pexels-photo-1427541.jpeg"
+                  src="https://images.pexels.com/photos/256152/pexels-photo-256152.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Tecnología avanzada"
                   className="w-full h-[185px] object-cover rounded-xl shadow-lg"
                 />
