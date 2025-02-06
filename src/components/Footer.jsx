@@ -23,8 +23,7 @@ const Footer = () => {
     address: 'C. Aquiles Serdán 520, Obregon, 37320 León de los Aldama, Gto.',
     phone: '+52 477 287 0874',
     emails: [
-      'logistica@rastreoterritorial.com',
-      'rastreoterritorial2019@outlook.com'
+      'logistica@rastreoterritorial.com'
     ]
   };
 

@@ -146,7 +146,7 @@ const Security = () => {
     {
       icon: FiTruck,
       title: 'Monitoreo de Flota',
-      description: 'Seguimiento en tiempo real de cada unidad con alertas automáticas.'
+      description: 'Seguimiento en tiempo real de cada unidad.'
     }
   ];
 

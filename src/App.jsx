@@ -1,19 +1,30 @@
 // src/App.jsx
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import MainRoutes from './components/MainRoutes';
 import ContactForm from './components/ContactForm';
 import FAQ from './components/FAQ';
-import Security from './components/Security';
 import FeatureCard from './components/FeatureCard';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import Footer from './components/Footer';
 import MaxWidthWrapper from './components/MaxWidthWrapper';
 import { FaWhatsapp } from 'react-icons/fa';
+
+// Componente para manejar el scroll al cambiar de página
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const WhatsAppButton = () => (
   <a
@@ -32,6 +43,7 @@ const WhatsAppButton = () => (
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-gray-50">
         <div className="flex flex-1">
           <Sidebar />
@@ -44,9 +56,9 @@ const App = () => {
                     <MaxWidthWrapper>
                       <Services />
                       <MainRoutes />
-                      <Security />
                       <FeatureCard />
                       <FAQ />
+                      <ContactForm />
                     </MaxWidthWrapper>
                   </div>
                 </>
@@ -55,7 +67,6 @@ const App = () => {
               <Route path="/rutas" element={<div className="bg-gray-50"><MaxWidthWrapper><MainRoutes /></MaxWidthWrapper></div>} />
               <Route path="/contacto" element={<div className="bg-gray-50"><MaxWidthWrapper><ContactForm /></MaxWidthWrapper></div>} />
               <Route path="/faq" element={<div className="bg-gray-50"><MaxWidthWrapper><FAQ /></MaxWidthWrapper></div>} />
-              <Route path="/seguridad" element={<div className="bg-gray-50"><MaxWidthWrapper><Security /></MaxWidthWrapper></div>} />
               <Route path="/privacidad" element={<div className="bg-gray-50"><MaxWidthWrapper><PrivacyPolicy /></MaxWidthWrapper></div>} />
             </Routes>
           </main>

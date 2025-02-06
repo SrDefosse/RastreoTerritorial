@@ -127,8 +127,7 @@ const MainRoutes = () => {
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
             Nuestras oficinas, ubicadas en la región del Bajío, nos permiten ofrecer un servicio rápido 
-            y eficaz en las rutas más importantes de comercio, tanto a nivel nacional como internacional. 
-            Cubrimos áreas clave como:
+            y eficaz en las rutas más importantes de comercio.
           </motion.p>
           <motion.p
             variants={itemVariants}
@@ -138,6 +137,51 @@ const MainRoutes = () => {
           </motion.p>
         </motion.div>
 
+        {/* Mapa de México con Rutas */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="bg-white rounded-xl shadow-lg p-8 overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-[#1D3C5B] mb-4">
+                  Cobertura Nacional
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Nuestras rutas principales conectan los puntos más importantes del comercio en México:
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                    Frontera Norte: Nuevo Laredo, Ciudad Juárez, Piedras Negras
+                  </li>
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                    Puertos: Manzanillo, Tampico, Altamira
+                  </li>
+                  <li className="flex items-center gap-3 text-gray-700">
+                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                    Centro: Bajío, CDMX, Guadalajara
+                  </li>
+                </ul>
+              </div>
+              <div className="relative aspect-square">
+                <img
+                  src="/public/images/MainRoutesImage.jpg"
+                  alt="Mapa de México"
+                  className="w-full h-full object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-[#1D3C5B]/10 rounded-lg" />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Rutas Cards */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"

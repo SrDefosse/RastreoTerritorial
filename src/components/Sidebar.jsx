@@ -21,7 +21,6 @@ const Sidebar = () => {
     { id: 1, icon: <FiHome size={20} />, label: 'Inicio', path: '/' },
     { id: 2, icon: <FiTool size={20} />, label: 'Servicios', path: '/servicios' },
     { id: 3, icon: <FiMap size={20} />, label: 'Rutas', path: '/rutas' },
-    { id: 4, icon: <FiShield size={20} />, label: 'Seguridad', path: '/seguridad' },
     { id: 5, icon: <FiHelpCircle size={20} />, label: 'FAQ', path: '/faq' },
     { id: 6, icon: <FiPhone size={20} />, label: 'Contacto', path: '/contacto' },
   ];

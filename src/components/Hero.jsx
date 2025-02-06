@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaShieldAlt, FaRoute, FaDesktop, FaArrowRight, FaWhatsapp } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 import { FiGlobe, FiAnchor, FiTruck } from 'react-icons/fi';
 import MaxWidthWrapper from './MaxWidthWrapper';
 
@@ -95,7 +95,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="public/videos/intro.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/18749847/18749847-uhd_2560_1440_60fps.mp4" type="video/mp4" />
         </video>
       </div>
 
