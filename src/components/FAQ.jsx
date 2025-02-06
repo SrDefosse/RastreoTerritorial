@@ -52,7 +52,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-4">
+    <div className="min-h-screen flex justify-center items-center bg-gray-50 py-6 px-4">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold text-[#111B40] text-center mb-12">
           Preguntas Frecuentes

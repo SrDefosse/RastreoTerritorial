@@ -14,7 +14,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import Footer from './components/Footer';
 import MaxWidthWrapper from './components/MaxWidthWrapper';
 import { FaWhatsapp } from 'react-icons/fa';
-
+import MexicoMap from './components/MexicoMap';
 // Componente para manejar el scroll al cambiar de página
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -56,6 +56,7 @@ const App = () => {
                     <MaxWidthWrapper>
                       <Services />
                       <MainRoutes />
+                      <MexicoMap />
                       <FeatureCard />
                       <FAQ />
                       <ContactForm />
