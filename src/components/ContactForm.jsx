@@ -279,7 +279,7 @@ const ContactForm = () => {
 
             {/* Redes Sociales */}
             <div className="mt-8">
-              <h4 className="font-medium text-gray-700 mb-4">Síguenos en redes sociales</h4>
+              <h4 className="font-medium text-gray-700 mb-4">Contáctanos por WhatsApp</h4>
               <div className="flex gap-4">
                 {socialMedia.map((social, index) => (
                   <a

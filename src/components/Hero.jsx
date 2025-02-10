@@ -1,25 +1,10 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import { FiGlobe, FiAnchor, FiTruck } from 'react-icons/fi';
 import MaxWidthWrapper from './MaxWidthWrapper';
 
 const Hero = () => {
-  const [currentPhrase, setCurrentPhrase] = useState(0);
-  const phrases = [
-    "Tu seguridad, nuestro destino",
-    "Protegiendo tu carga 24/7",
-    "Tecnología al servicio de tu tranquilidad"
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPhrase((prev) => (prev + 1) % phrases.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -113,20 +98,12 @@ const Hero = () => {
           animate="visible"
         >
           <motion.div variants={itemVariants} className="text-center mb-6 sm:mb-8">
-            <div className="relative h-[40px] sm:h-[48px] md:h-[56px] lg:h-[64px] mb-4">
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={phrases[currentPhrase]}
-                  variants={textVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight absolute w-full"
-                >
-                  {phrases[currentPhrase]}
-                </motion.h1>
-              </AnimatePresence>
-            </div>
+            <motion.h1
+              variants={itemVariants}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4"
+            >
+              Tu seguridad, nuestro destino
+            </motion.h1>
             <motion.p 
               className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed py-8 flex items-center justify-center"
               variants={itemVariants}
