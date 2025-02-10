@@ -70,7 +70,7 @@ const Sidebar = () => {
               }}
             />
             <img
-              src="/images/logo.png"
+              src="/images/logo_extended.png"
               alt="Logo Completo"
               className={`absolute transition-all duration-300 h-12 w-auto ${
                 isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
