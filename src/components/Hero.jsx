@@ -8,9 +8,9 @@ import MaxWidthWrapper from './MaxWidthWrapper';
 const Hero = () => {
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const phrases = [
-    "Su seguridad, nuestro destino",
-    "Protegiendo su carga 24/7",
-    "Tecnología al servicio de su tranquilidad"
+    "Tu seguridad, nuestro destino",
+    "Protegiendo tu carga 24/7",
+    "Tecnología al servicio de tu tranquilidad"
   ];
 
   useEffect(() => {
@@ -84,10 +84,10 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative flex items-center justify-center min-h-[100dvh] overflow-hidden">
+    <section className="relative flex items-center justify-center min-h-[100dvh] overflow-hidden pb-10">
       {/* Video de fondo */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[#1D3C5B]/40 z-10" />
+        <div className="absolute inset-0 bg-[#1D3C5B]/30 z-10" />
         <video
           autoPlay
           loop
@@ -101,8 +101,13 @@ const Hero = () => {
 
       {/* Contenido Principal */}
       <MaxWidthWrapper className="relative z-10 h-full">
+        {/* Logo centrado */}
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 py-10 z-50">
+          <img src="images/logo.png" alt="Logo" className="h-16 md:h-20" />
+        </div>
+
         <motion.div
-          className="w-full h-full my-20 sm:py-14"
+          className="w-full h-full pt-40 md:pt-48"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -126,7 +131,7 @@ const Hero = () => {
               className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed py-8 flex items-center justify-center"
               variants={itemVariants}
             >
-              Empresa mexicana dedicada a la custodia de autotransporte.
+              Empresa mexicana dedicada a la custodia de bienes en tránsito.
             </motion.p>
           </motion.div>
 

@@ -29,10 +29,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Logo y Descripción */}
           <div className="space-y-4">
-            <img src="/images/logo.png" alt="Rastreo Territorial" className="h-12" />
-            <p className="text-gray-300 mt-4">
-              Empresa mexicana dedicada a la custodia de autotransporte, brindando seguridad y tranquilidad a nuestros clientes.
-            </p>
+            <img src="/images/logo_extended.png" alt="Rastreo Territorial" className="h-16" />
           </div>
 
           {/* Enlaces Rápidos */}

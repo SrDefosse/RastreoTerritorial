@@ -69,8 +69,8 @@ const Services = () => {
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
             Nos especializamos en brindar soluciones integrales para el transporte de mercancías. 
-            Nuestra misión es garantizar que sus productos lleguen a su destino de manera segura y eficiente, 
-            minimizando los riesgos asociados con el transporte en carretera.
+            Nuestra misión es brindar el mejor servicio para que tus productos puedan llegar de manera segura 
+            y eficiente, minimizando los riesgos asociados al traslado de mercancías en carretera.
           </motion.p>
         </motion.div>
 
