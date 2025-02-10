@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => {
   return (
@@ -75,11 +76,14 @@ const FAQ = () => {
             ¿No encontraste lo que buscabas?
           </p>
           <a
-            href="/contacto"
-            className="inline-block mt-2 text-[#1D3C5B] hover:text-[#524E62] font-medium
-              transition-colors duration-300"
+            href="https://wa.me/+524772870874"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-4 px-6 py-3 bg-[#25D366] text-white rounded-lg font-semibold
+              hover:bg-[#20BA5C] transition-all duration-300 shadow-lg flex items-center justify-center gap-2 mx-auto"
           >
             Contáctanos directamente
+            <FaWhatsapp className="text-xl" />
           </a>
         </div>
       </div>

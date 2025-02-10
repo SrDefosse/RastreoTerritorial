@@ -36,7 +36,6 @@ const RouteCard = ({ route, isActive, onClick }) => {
 };
 
 const MainRoutes = () => {
-  const [activeRoute, setActiveRoute] = useState(null);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -44,42 +43,42 @@ const MainRoutes = () => {
     {
       title: "Frontera Norte Este",
       description: "Nuevo Laredo, Tamaulipas y Piedras Negras, Coahuila",
-      icon: <FaTruck className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      icon: <FaTruck className="text-2xl text-white" />,
       stats: "1,200+ km",
       highlight: "Alta seguridad"
     },
     {
       title: "Frontera Norte Oeste",
       description: "Ciudad Juárez, Chihuahua y rutas principales",
-      icon: <FaIndustry className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      icon: <FaIndustry className="text-2xl text-white" />,
       stats: "2,000+ km",
       highlight: "24/7 monitoreo"
     },
     {
       title: "Puertos del Pacífico",
       description: "Manzanillo, Colima y conexiones",
-      icon: <FaShip className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      icon: <FaShip className="text-2xl text-white" />,
       stats: "800+ km",
       highlight: "Carga marítima"
     },
     {
       title: "Puertos del Golfo",
       description: "Tampico, Altamira y Veracruz",
-      icon: <FaShip className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      icon: <FaShip className="text-2xl text-white" />,
       stats: "900+ km",
       highlight: "Multimodal"
     },
     {
       title: "Corredor Occidente",
       description: "Guadalajara, Jalisco y región Bajío",
-      icon: <FaTruck className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      icon: <FaTruck className="text-2xl text-white" />,
       stats: "350+ km",
       highlight: "Alta frecuencia"
     },
     {
       title: "Zona Metropolitana",
       description: "Estado de México y Área Metropolitana",
-      icon: <FaWarehouse className="text-2xl text-[#1D3C5B] group-hover:text-white" />,
+      icon: <FaWarehouse className="text-2xl text-white" />,
       stats: "150+ km",
       highlight: "Distribución"
     }
@@ -156,22 +155,22 @@ const MainRoutes = () => {
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-gray-700">
-                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                    <div className="w-3 h-3 rounded-full bg-blue-600 flex-shrink-0" />
                     Frontera Norte: Nuevo Laredo, Ciudad Juárez, Piedras Negras
                   </li>
                   <li className="flex items-center gap-3 text-gray-700">
-                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                    <div className="w-3 h-3 rounded-full bg-blue-600 flex-shrink-0" />
                     Puertos: Manzanillo, Tampico, Altamira
                   </li>
                   <li className="flex items-center gap-3 text-gray-700">
-                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                    <div className="w-3 h-3 rounded-full bg-blue-600 flex-shrink-0" />
                     Centro: Bajío, CDMX, Guadalajara
                   </li>
                 </ul>
               </div>
               <div className="relative aspect-square">
                 <img
-                  src="/public/images/MainRoutesImage.jpg"
+                  src="/images/MainRoutesImage.jpg"
                   alt="Rastreo Territorial"
                   className="w-full h-full object-cover rounded-lg"
                 />
@@ -190,11 +189,11 @@ const MainRoutes = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {routes.map((route, index) => (
-            <Link key={index} to={isHomePage ? "/rutas" : `https://wa.me/+524772870874`} target={!isHomePage ? "_blank" : undefined}>
+            <Link key={index} to={isHomePage ? "/rutas" : `https://wa.me/+524772870874`} target={!isHomePage ? "_blank" : undefined} className="h-full">
               <motion.div
                 variants={itemVariants}
                 className="group bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition-all duration-300
-                  hover:scale-105 hover:shadow-xl border border-gray-100"
+                  hover:scale-105 hover:shadow-xl border border-gray-100 h-full flex flex-col"
               >
                 <div className="bg-[#1D3C5B] p-4 flex items-center gap-3">
                   <div className="p-3 rounded-lg bg-white/10">
@@ -205,12 +204,12 @@ const MainRoutes = () => {
                   </h3>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex-grow">
                   <p className="text-gray-600 mb-6">
                     {route.description}
                   </p>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center gap-2">
                       <FiNavigation2 className="text-[#1D3C5B]" />
                       <span className="text-[#1D3C5B] font-medium">{route.stats}</span>

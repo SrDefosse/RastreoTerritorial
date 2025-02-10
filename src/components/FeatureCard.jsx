@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { FaRocket, FaShieldAlt, FaBoxOpen, FaUsers, FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaRocket, FaShieldAlt, FaUsers } from 'react-icons/fa';
+
 
 const FeatureCard = () => {
   const features = [
@@ -90,37 +90,6 @@ const FeatureCard = () => {
           ))}
         </motion.div>
 
-        {/* CTA Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-gray-600 mb-8"
-          >
-            ¿Listo para proteger su inversión con la mejor tecnología en seguridad?
-          </motion.p>
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link to="/servicios">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-3 bg-[#1D3C5B] text-white rounded-lg font-semibold
-                  hover:bg-[#2A4E73] transition-all duration-300 shadow-lg flex items-center gap-2"
-              >
-                Ver Todos los Servicios
-                <FaArrowRight />
-              </motion.button>
-            </Link>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

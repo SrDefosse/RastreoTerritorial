@@ -87,7 +87,7 @@ const Hero = () => {
     <section className="relative flex items-center justify-center min-h-[100dvh] overflow-hidden">
       {/* Video de fondo */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[#1D3C5B]/80 z-10" />
+        <div className="absolute inset-0 bg-[#1D3C5B]/40 z-10" />
         <video
           autoPlay
           loop
@@ -102,13 +102,13 @@ const Hero = () => {
       {/* Contenido Principal */}
       <MaxWidthWrapper className="relative z-10 h-full">
         <motion.div
-          className="w-full py-10 sm:py-14"
+          className="w-full h-full my-20 sm:py-14"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           <motion.div variants={itemVariants} className="text-center mb-6 sm:mb-8">
-            <div className="mb-4">
+            <div className="relative h-[40px] sm:h-[48px] md:h-[56px] lg:h-[64px] mb-4">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={phrases[currentPhrase]}
@@ -116,14 +116,14 @@ const Hero = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight absolute w-full"
                 >
                   {phrases[currentPhrase]}
                 </motion.h1>
               </AnimatePresence>
             </div>
             <motion.p 
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed py-8 flex items-center justify-center"
               variants={itemVariants}
             >
               Empresa mexicana dedicada a la custodia de autotransporte.

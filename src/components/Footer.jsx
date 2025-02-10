@@ -1,21 +1,17 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaWhatsapp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Footer = () => {
   const navigation = [
     { name: 'Inicio', to: '/' },
     { name: 'Servicios', to: '/servicios' },
     { name: 'Rutas', to: '/rutas' },
-    { name: 'Seguridad', to: '/seguridad' },
     { name: 'Contacto', to: '/contacto' },
     { name: 'FAQ', to: '/faq' },
     { name: 'Política de Privacidad', to: '/privacidad' }
   ];
 
   const socialMedia = [
-    { icon: <FaFacebook />, link: 'https://facebook.com/rastreoterritorial' },
-    { icon: <FaInstagram />, link: 'https://instagram.com/rastreoterritorial' },
-    { icon: <FaLinkedin />, link: 'https://linkedin.com/company/rastreoterritorial' },
     { icon: <FaWhatsapp />, link: 'https://wa.me/+524772870874' }
   ];
 
@@ -33,7 +29,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {/* Logo y Descripción */}
           <div className="space-y-4">
-            <img src="/public/images/logo.png" alt="Rastreo Territorial" className="h-12" />
+            <img src="/images/logo.png" alt="Rastreo Territorial" className="h-12" />
             <p className="text-gray-300 mt-4">
               Empresa mexicana dedicada a la custodia de autotransporte, brindando seguridad y tranquilidad a nuestros clientes.
             </p>

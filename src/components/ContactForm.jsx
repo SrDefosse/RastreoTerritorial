@@ -60,21 +60,6 @@ const ContactForm = () => {
 
   const socialMedia = [
     { 
-      icon: <FaFacebook className="text-2xl" />, 
-      name: 'Facebook',
-      link: 'https://facebook.com/rastreoterritorial' 
-    },
-    { 
-      icon: <FaInstagram className="text-2xl" />, 
-      name: 'Instagram',
-      link: 'https://instagram.com/rastreoterritorial' 
-    },
-    { 
-      icon: <FaLinkedin className="text-2xl" />, 
-      name: 'LinkedIn',
-      link: 'https://linkedin.com/company/rastreoterritorial' 
-    },
-    { 
       icon: <FaWhatsapp className="text-2xl" />, 
       name: 'WhatsApp',
       link: 'https://wa.me/+524772870874' 

@@ -6,7 +6,6 @@ import {
   FiMap, 
   FiPhone, 
   FiHelpCircle, 
-  FiShield,
   FiMenu, 
   FiX 
 } from 'react-icons/fi';
