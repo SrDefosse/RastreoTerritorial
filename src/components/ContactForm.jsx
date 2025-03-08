@@ -85,7 +85,7 @@ const ContactForm = () => {
       setIsSubmitting(true);
       
       try {
-        const response = await fetch('http://localhost/send-email.php', {
+        const response = await fetch('http://rastreoterritorial.com.mx/send-email.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
