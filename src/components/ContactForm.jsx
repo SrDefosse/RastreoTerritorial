@@ -40,10 +40,9 @@ const FloatingLabel = ({ id, label, value, onChange, type = 'text', required = t
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    nombre: '',
-    correo: '',
-    telefono: '',
-    mensaje: ''
+    name: '',
+    email: '',
+    message: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -68,14 +67,13 @@ const ContactForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.nombre) newErrors.nombre = 'El nombre es requerido';
-    if (!formData.correo) {
-      newErrors.correo = 'El correo es requerido';
-    } else if (!/\S+@\S+\.\S+/.test(formData.correo)) {
-      newErrors.correo = 'El correo no es válido';
+    if (!formData.name) newErrors.name = 'El nombre es requerido';
+    if (!formData.email) {
+      newErrors.email = 'El correo es requerido';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'El correo no es válido';
     }
-    if (!formData.telefono) newErrors.telefono = 'El teléfono es requerido';
-    if (!formData.mensaje) newErrors.mensaje = 'El mensaje es requerido';
+    if (!formData.message) newErrors.message = 'El mensaje es requerido';
     return newErrors;
   };
 
@@ -85,20 +83,38 @@ const ContactForm = () => {
     
     if (Object.keys(newErrors).length === 0) {
       setIsSubmitting(true);
-      // Simulamos el envío
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      // Reset después de 3 segundos
-      setTimeout(() => {
-        setIsSuccess(false);
-        setFormData({
-          nombre: '',
-          correo: '',
-          telefono: '',
-          mensaje: ''
+      
+      try {
+        const response = await fetch('http://localhost/send-email.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
         });
-      }, 3000);
+        
+        const result = await response.text();
+        
+        setIsSubmitting(false);
+        
+        if (result === "success") {
+          setIsSuccess(true);
+          // Reset después de 3 segundos
+          setTimeout(() => {
+            setIsSuccess(false);
+            setFormData({
+              name: '',
+              email: '',
+              message: ''
+            });
+          }, 3000);
+        } else {
+          setErrors({ server: 'Error al enviar el mensaje' });
+        }
+      } catch (error) {
+        setIsSubmitting(false);
+        setErrors({ server: 'Error de conexión. Por favor, inténtelo de nuevo.' });
+      }
     } else {
       setErrors(newErrors);
     }
@@ -136,68 +152,62 @@ const ContactForm = () => {
             <h3 className="text-2xl font-semibold text-[#1D3C5B] mb-6">Envíenos un mensaje</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <FloatingLabel
-                id="nombre"
+                id="name"
                 label="Nombre completo"
-                value={formData.nombre}
+                value={formData.name}
                 onChange={(e) => {
-                  setFormData({ ...formData, nombre: e.target.value });
-                  setErrors({ ...errors, nombre: '' });
+                  setFormData({ ...formData, name: e.target.value });
+                  setErrors({ ...errors, name: '' });
                 }}
-                error={errors.nombre}
+                error={errors.name}
               />
 
               <FloatingLabel
-                id="correo"
+                id="email"
                 label="Correo electrónico"
                 type="email"
-                value={formData.correo}
+                value={formData.email}
                 onChange={(e) => {
-                  setFormData({ ...formData, correo: e.target.value });
-                  setErrors({ ...errors, correo: '' });
+                  setFormData({ ...formData, email: e.target.value });
+                  setErrors({ ...errors, email: '' });
                 }}
-                error={errors.correo}
-              />
-
-              <FloatingLabel
-                id="telefono"
-                label="Teléfono"
-                type="tel"
-                value={formData.telefono}
-                onChange={(e) => {
-                  setFormData({ ...formData, telefono: e.target.value });
-                  setErrors({ ...errors, telefono: '' });
-                }}
-                error={errors.telefono}
+                error={errors.email}
               />
 
               <div className="relative">
                 <textarea
-                  id="mensaje"
-                  value={formData.mensaje}
+                  id="message"
+                  value={formData.message}
                   onChange={(e) => {
-                    setFormData({ ...formData, mensaje: e.target.value });
-                    setErrors({ ...errors, mensaje: '' });
+                    setFormData({ ...formData, message: e.target.value });
+                    setErrors({ ...errors, message: '' });
                   }}
                   rows="4"
                   className={`w-full px-4 py-3 text-base border rounded-lg outline-none transition-all duration-200
-                    ${errors.mensaje ? 'border-[#F87171] animate-shake' : 'border-[#D2C7CC]'}
+                    ${errors.message ? 'border-[#F87171] animate-shake' : 'border-[#D2C7CC]'}
                     focus:border-[#1D3C5B] focus:ring-2 focus:ring-[#1D3C5B]/20`}
                   required
                 />
                 <label
-                  htmlFor="mensaje"
+                  htmlFor="message"
                   className={`absolute left-4 transition-all duration-200 pointer-events-none
-                    ${formData.mensaje 
+                    ${formData.message 
                       ? 'transform -translate-y-7 scale-90 text-[#1D3C5B] font-medium'
                       : 'transform translate-y-3 text-gray-500'
                     }`}
                 >
                   Mensaje
                 </label>
-                {errors.mensaje && (
-                  <p className="mt-1 text-sm text-[#F87171]">{errors.mensaje}</p>
+                {errors.message && (
+                  <p className="mt-1 text-sm text-[#F87171]">{errors.message}</p>
                 )}
               </div>
+
+              {errors.server && (
+                <div className="p-3 bg-red-100 border border-red-200 rounded-lg text-red-700">
+                  <p>{errors.server}</p>
+                </div>
+              )}
 
               <button
                 type="submit"

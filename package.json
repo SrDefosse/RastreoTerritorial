@@ -2,12 +2,13 @@
   "name": "rastreoterritorial",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js"
   },
   "dependencies": {
     "framer-motion": "^12.0.6",
@@ -16,7 +17,10 @@
     "react-icons": "^5.4.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^7.1.4",
-    "leaflet": "^1.9.4"
+    "leaflet": "^1.9.4",
+    "express": "^4.18.2",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

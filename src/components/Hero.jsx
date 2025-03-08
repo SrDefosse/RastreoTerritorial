@@ -27,26 +27,6 @@ const Hero = () => {
     }
   };
 
-  const textVariants = {
-    enter: { y: 20, opacity: 0 },
-    center: { 
-      y: 0, 
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    },
-    exit: { 
-      y: -20, 
-      opacity: 0,
-      transition: {
-        duration: 0.4,
-        ease: [0.16, 1, 0.3, 1]
-      }
-    }
-  };
-
   const features = [
     { 
       title: "Frontera Norte", 
